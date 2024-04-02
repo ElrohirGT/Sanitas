@@ -7,11 +7,11 @@ Cada `feature` que agreguemos será desarrollada en su propia rama y únicamente
 
 Debido a la gran cantidad de PRs que se pueden generar al momento de usar esta metodología y debido a que este es un monorepo se decidió designar encargados según el área de trabajo, estas personas son las únicas con permiso de darle merge a las PRs en cada una de estas áreas:
 
-- Database:
+- Database: [@BiancaCalderon](https://github.com/BiancaCalderon)
 - Backend: [@ElrohirGT](https://github.com/ElrohirGT)
 - Nix env: [@ElrohirGT](https://github.com/ElrohirGT)
 - Frontend: Visual & UI/UX Review por [@lemoonchild](https://github.com/lemoonchild) , Code Structure Review por [@XavierLopez25](https://github.com/XavierLopez25)
-- Wiki:
+- Wiki: [@BiancaCalderon](https://github.com/BiancaCalderon)
 
 El siguiente diagrama ilustra un poco el estado y la relación de las ramas entre sí:
 
