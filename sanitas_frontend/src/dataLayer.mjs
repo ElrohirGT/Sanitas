@@ -315,3 +315,68 @@ export const updateStudentPatientInformation = async (APIStudentInfo) => {
     return { error };
   }
 };
+
+/**
+ * Fetches the surgical history for a specific patient by their ID.
+ * Handles potential errors and formats the response.
+ *
+ * @param {string} id - The patient's ID.
+ * @returns {Promise<Object>} An object containing either the surgical history data or an error.
+ */
+export const getSurgicalHistory = async (id) => {
+  const url = `${BASE_URL}/patient/surgical-history/${id}`;
+  try {
+    const response = await axios.get(url);
+    if (response.status === 200) {
+      return { result: response.data };
+    } else {
+      return { error: `Received unexpected status code: ${response.status}` };
+    }
+  } catch (error) {
+    if (error.response) {
+      return {
+        error: `Failed to fetch data: ${error.response.status} ${error.response.statusText}`,
+      };
+    } else if (error.request) {
+      return { error: "No response received" };
+    } else {
+      return { error: error.message };
+    }
+  }
+};
+
+/**
+ * Updates the surgical history of a patient by sending a PUT request to a specific endpoint.
+ * This function constructs a payload from the surgical events provided and sends it to the server.
+ *
+ * @param {string} patientId - The unique identifier for the patient.
+ * @param {Array<Object>} surgicalEvents - An array of objects where each object contains details about a surgical event.
+ * @returns {Promise<Object>} - The response data from the server as a promise. If an error occurs during the request,
+ * it returns the error message or the error response from the server.
+ */
+export const updateSurgicalHistory = async (patientId, surgicalEvents) => {
+  const url = `${BASE_URL}/patient/surgical-history`;
+
+  const payload = {
+    id: patientId,
+    hasSurgicalEvent: surgicalEvents.length > 0,
+    surgicalEventData: surgicalEvents.map((event) => ({
+      surgeryType: event.surgeryType,
+      surgeryYear: event.surgeryYear,
+      complications: event.complications,
+    })),
+  };
+
+  try {
+    const response = await axios.put(url, payload);
+    return { result: response.data };
+  } catch (error) {
+    if (error.response) {
+      return { error: error.response.data };
+    } else if (error.request) {
+      return { error: "No response received" };
+    } else {
+      return { error: error.message };
+    }
+  }
+};

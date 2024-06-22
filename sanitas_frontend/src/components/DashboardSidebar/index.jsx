@@ -72,10 +72,6 @@ export default function DashboardSidebar({
     };
   };
 
-  const handleIconClick = () => {
-    onGoBack();
-  };
-
   return (
     <div
       style={{
@@ -85,6 +81,7 @@ export default function DashboardSidebar({
         padding: "1rem",
         borderRadius: "0.625rem",
         width: "100%",
+        height: "100%",
       }}
     >
       <div
@@ -92,6 +89,7 @@ export default function DashboardSidebar({
           display: "flex",
           alignItems: "end",
           justifyContent: "end",
+          paddingRight: "1rem",
           width: "100%",
         }}
       >
@@ -133,6 +131,7 @@ export default function DashboardSidebar({
               fontWeight: "bold",
               fontSize: "1.1rem",
               paddingRight: "0.5rem",
+              paddingTop: "0.4rem",
             }}
           >
             {userInformation.displayName}
